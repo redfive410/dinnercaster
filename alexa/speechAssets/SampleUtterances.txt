@@ -1,0 +1,3 @@
+DinnerCasterIntent a dinner idea
+DinnerCasterIntent tell me a dinner idea
+DinnerCasterIntent give me a dinner idea
