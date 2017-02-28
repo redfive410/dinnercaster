@@ -46,7 +46,7 @@ const handlers = {
         const randomDinner = dinnerArr[dinnerIndex];
 
         // Create speech output
-        const speechOutput = this.t('GET_DINNER_MESSAGE') + randomFact;
+        const speechOutput = this.t('GET_DINNER_MESSAGE') + randomDinner;
         this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomDinner);
     },
     'AMAZON.HelpIntent': function () {
