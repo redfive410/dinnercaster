@@ -30,30 +30,12 @@
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "AttributeDefinitions": [{
-          "AttributeName": "SuperHero",
-          "AttributeType": "S"
-        }, {
-          "AttributeName": "MissionStatus",
-          "AttributeType": "S"
-        }, {
-          "AttributeName": "Villain1",
-          "AttributeType": "S"
-        }, {
-          "AttributeName": "Villain2",
-          "AttributeType": "S"
-        }, {
-          "AttributeName": "Villain3",
-          "AttributeType": "S"
-        },{
-          "AttributeName": "SecretIdentity",
+          "AttributeName": "DinnerName",
           "AttributeType": "S"
         }],
         "KeySchema": [{
-          "AttributeName": "SuperHero",
+          "AttributeName": "DinnerName",
           "KeyType": "HASH"
-        }, {
-          "AttributeName": "MissionStatus",
-          "KeyType": "RANGE"
         }],
         "ProvisionedThroughput": {
           "ReadCapacityUnits": {
@@ -66,56 +48,7 @@
         "StreamSpecification": {
           "StreamViewType": "NEW_AND_OLD_IMAGES"
         },
-        "TableName": "DinnerCaster",
-        "GlobalSecondaryIndexes": [{
-          "IndexName": "myGSI",
-          "KeySchema": [{
-            "AttributeName": "MissionStatus",
-            "KeyType": "HASH"
-          }, {
-            "AttributeName": "Villain1",
-            "KeyType": "RANGE"
-          }],
-          "Projection": {
-            "NonKeyAttributes": ["SuperHero", "SecretIdentity"],
-            "ProjectionType": "INCLUDE"
-          },
-          "ProvisionedThroughput": {
-            "ReadCapacityUnits": "6",
-            "WriteCapacityUnits": "6"
-          }
-        }, {
-          "IndexName": "myGSI2",
-          "KeySchema": [{
-            "AttributeName": "SecretIdentity",
-            "KeyType": "HASH"
-          }, {
-            "AttributeName": "Villain3",
-            "KeyType": "RANGE"
-          }],
-          "Projection": {
-            "NonKeyAttributes": ["SuperHero", "Villain1"],
-            "ProjectionType": "INCLUDE"
-          },
-          "ProvisionedThroughput": {
-            "ReadCapacityUnits": "6",
-            "WriteCapacityUnits": "6"
-          }
-        }],
-        "LocalSecondaryIndexes": [{
-          "IndexName": "myLSI",
-          "KeySchema": [{
-            "AttributeName": "SuperHero",
-            "KeyType": "HASH"
-          }, {
-            "AttributeName": "Villain2",
-            "KeyType": "RANGE"
-          }],
-          "Projection": {
-            "NonKeyAttributes": ["Villain1", "MissionStatus"],
-            "ProjectionType": "INCLUDE"
-          }
-        }]
+        "TableName": "DinnerCaster"
       }
     },
     "AppendItemToListFunction": {
@@ -127,7 +60,7 @@
         },
         "Code": {
           "S3Bucket": "dinnercaster-assets-1",
-          "S3Key": "lambdafunc.js.zip"
+          "S3Key": "initDynamofunc.js.zip"
         },
         "Runtime": "nodejs4.3"
       }
@@ -142,20 +75,6 @@
         "Code": {
           "S3Bucket": "dinnercaster-assets-1",
           "S3Key": "getheroeslistfunc.js.zip"
-        },
-        "Runtime": "nodejs4.3"
-      }
-    },
-    "getmissiondetailsFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Handler": "getmissiondetailsfunc.handler",
-        "Role": {
-          "Fn::GetAtt": ["DinnerCasterDynamoDBQueryRole", "Arn"]
-        },
-        "Code": {
-          "S3Bucket": "dinnercaster-assets-1",
-          "S3Key": "getmissiondetailsfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
       }
