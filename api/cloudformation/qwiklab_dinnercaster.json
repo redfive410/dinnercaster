@@ -65,19 +65,32 @@
         "Runtime": "nodejs4.3"
       }
     },
-    "getheroeslistFunction": {
+    "getdinnerslistFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
-        "Handler": "getheroeslistfunc.handler",
+        "Handler": "getdinnerslistfunc.handler",
         "Role": {
           "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
         },
         "Code": {
           "S3Bucket": "dinnercaster-assets-1",
-          "S3Key": "getheroeslistfunc.js.zip"
+          "S3Key": "getdinnerslistfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
-      }
+      },
+      "getdinnerdetailsFunction": {
+        "Type": "AWS::Lambda::Function",
+        "Properties": {
+          "Handler": "getdinnerdetailsfunc.handler",
+          "Role": {
+            "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
+          },
+          "Code": {
+            "S3Bucket": "dinnercaster-assets-1",
+            "S3Key": "getdinnerdetailslistfunc.js.zip"
+          },
+          "Runtime": "nodejs4.3"
+        }
     },
     "DinnerCasterDynamoDBScanRole": {
       "Type": "AWS::IAM::Role",

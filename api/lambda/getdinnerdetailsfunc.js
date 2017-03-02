@@ -2,9 +2,9 @@ var doc = require('aws-sdk');
 var dynamo = new doc.DynamoDB();
 var fun = function(event, context) {
 condition = {};
-condition["SuperHero"] = {
+condition["DinnerName"] = {
 ComparisonOperator: 'EQ',
-AttributeValueList:[{S: event.superhero}]
+AttributeValueList:[{S: event.dinnername}]
 }
 var getParams = {
 TableName:'DinnerCaster',
