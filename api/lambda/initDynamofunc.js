@@ -11,28 +11,68 @@ var fun = function(event, context)
             {
                 PutRequest: {
                     Item: {
-                        "DinnerName": "Perogies"
+                        "DinnerName": "Perogies",
+                        "SundayScore": 5,
+                        "MondayScore": 1,
+                        "TuesdayScore": 1,
+                        "WednesdayScore": 1,
+                        "ThursdayScore": 1,
+                        "FridayScore": 1,
+                        "SaturdayScore": 1,
+                        "ColdWeatherScore": 4,
+                        "HotWeatherScore": 1,
+                        "GeneralScore": 2
                     }
                 }
             },
             {
                 PutRequest: {
                     Item: {
-                         "DinnerName": "Ramen"
+                         "DinnerName": "Ramen",
+                         "SundayScore": 5,
+                         "MondayScore": 1,
+                         "TuesdayScore": 1,
+                         "WednesdayScore": 1,
+                         "ThursdayScore": 1,
+                         "FridayScore": 1,
+                         "SaturdayScore": 1,
+                         "ColdWeatherScore": 4,
+                         "HotWeatherScore": 1,
+                         "GeneralScore": 2
                     }
                 }
             },
             {
                 PutRequest: {
                     Item: {
-                        "DinnerName": "Thai"
+                         "DinnerName": "Thai",
+                         "SundayScore": 5,
+                         "MondayScore": 1,
+                         "TuesdayScore": 1,
+                         "WednesdayScore": 1,
+                         "ThursdayScore": 1,
+                         "FridayScore": 1,
+                         "SaturdayScore": 1,
+                         "ColdWeatherScore": 4,
+                         "HotWeatherScore": 1,
+                         "GeneralScore": 2
                     }
                 }
             },
 	    {
                 PutRequest: {
                     Item: {
-                        "DinnerName": "Tacos"
+                         "DinnerName": "Tacos",
+                         "SundayScore": 5,
+                         "MondayScore": 1,
+                         "TuesdayScore": 1,
+                         "WednesdayScore": 1,
+                         "ThursdayScore": 1,
+                         "FridayScore": 1,
+                         "SaturdayScore": 1,
+                         "ColdWeatherScore": 4,
+                         "HotWeatherScore": 1,
+                         "GeneralScore": 2
                     }
                 }
             }

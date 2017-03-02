@@ -54,7 +54,7 @@
     "AppendItemToListFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
-        "Handler": "lambdafunc.handler",
+        "Handler": "initDynamofunc.handler",
         "Role": {
           "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
         },
