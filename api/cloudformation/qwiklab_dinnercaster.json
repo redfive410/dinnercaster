@@ -54,13 +54,13 @@
     "AppendItemToListFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
-        "Handler": "initDynamofunc.handler",
+        "Handler": "initDynamoDBfunc.handler",
         "Role": {
           "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
         },
         "Code": {
           "S3Bucket": "dinnercaster-assets-1",
-          "S3Key": "initDynamofunc.js.zip"
+          "S3Key": "initDynamoDBfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
       }
@@ -77,20 +77,21 @@
           "S3Key": "getdinnerslistfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
-      },
-      "getdinnerdetailsFunction": {
-        "Type": "AWS::Lambda::Function",
-        "Properties": {
-          "Handler": "getdinnerdetailsfunc.handler",
-          "Role": {
-            "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
-          },
-          "Code": {
-            "S3Bucket": "dinnercaster-assets-1",
-            "S3Key": "getdinnerdetailslistfunc.js.zip"
-          },
-          "Runtime": "nodejs4.3"
-        }
+      }
+    },
+    "getdinnerdetailsFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "getdinnerdetailsfunc.handler",
+        "Role": {
+          "Fn::GetAtt": ["DinnerCasterDynamoDBQueryRole", "Arn"]
+        },
+        "Code": {
+          "S3Bucket": "dinnercaster-assets-1",
+          "S3Key": "getdinnerdetailsfunc.js.zip"
+        },
+        "Runtime": "nodejs4.3"
+      }
     },
     "DinnerCasterDynamoDBScanRole": {
       "Type": "AWS::IAM::Role",

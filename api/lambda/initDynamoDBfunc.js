@@ -30,15 +30,15 @@ var fun = function(event, context)
                     Item: {
                          "DinnerName": "Ramen",
                          "SundayScore": 5,
-                         "MondayScore": 1,
+                         "MondayScore": 5,
                          "TuesdayScore": 1,
-                         "WednesdayScore": 1,
-                         "ThursdayScore": 1,
-                         "FridayScore": 1,
-                         "SaturdayScore": 1,
-                         "ColdWeatherScore": 4,
+                         "WednesdayScore": 5,
+                         "ThursdayScore": 3,
+                         "FridayScore": 3,
+                         "SaturdayScore": 3,
+                         "ColdWeatherScore": 5,
                          "HotWeatherScore": 1,
-                         "GeneralScore": 2
+                         "GeneralScore": 3
                     }
                 }
             },
@@ -46,16 +46,16 @@ var fun = function(event, context)
                 PutRequest: {
                     Item: {
                          "DinnerName": "Thai",
-                         "SundayScore": 5,
+                         "SundayScore": 1,
                          "MondayScore": 1,
                          "TuesdayScore": 1,
-                         "WednesdayScore": 1,
-                         "ThursdayScore": 1,
+                         "WednesdayScore": 5,
+                         "ThursdayScore": 5,
                          "FridayScore": 1,
                          "SaturdayScore": 1,
-                         "ColdWeatherScore": 4,
+                         "ColdWeatherScore": 5,
                          "HotWeatherScore": 1,
-                         "GeneralScore": 2
+                         "GeneralScore": 3
                     }
                 }
             },
@@ -65,14 +65,14 @@ var fun = function(event, context)
                          "DinnerName": "Tacos",
                          "SundayScore": 5,
                          "MondayScore": 1,
-                         "TuesdayScore": 1,
+                         "TuesdayScore": 5,
                          "WednesdayScore": 1,
                          "ThursdayScore": 1,
                          "FridayScore": 1,
                          "SaturdayScore": 1,
                          "ColdWeatherScore": 4,
-                         "HotWeatherScore": 1,
-                         "GeneralScore": 2
+                         "HotWeatherScore": 3,
+                         "GeneralScore": 5
                     }
                 }
             }
