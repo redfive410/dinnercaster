@@ -10,6 +10,8 @@
 
 'use strict';
 
+require("dinnercaster");
+
 const Alexa = require('alexa-sdk');
 
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
