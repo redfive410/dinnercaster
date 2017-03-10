@@ -10,6 +10,18 @@
 
 'use strict';
 
+require("./lib/axios/dist/axios.standalone.js");
+require("./lib/CryptoJS/rollups/hmac-sha256.js");
+require("./lib/CryptoJS/rollups/sha256.js");
+require("./lib/CryptoJS/components/hmac.js");
+require("./lib/CryptoJS/components/enc-base64.js");
+require("./lib/url-template/url-template.js");
+require("./lib/apiGatewayCore/sigV4Client.js");
+require("./lib/apiGatewayCore/apiGatewayClient.js");
+require("./lib/apiGatewayCore/simpleHttpClient.js");
+require("./lib/apiGatewayCore/utils.js");
+require("./apigClient.js");
+
 require("dinnercaster");
 
 const Alexa = require('alexa-sdk');
@@ -42,6 +54,8 @@ const handlers = {
     },
     'GetDinner': function () {
         // Get a random dinner from the dinner list
+        var apigClient = apigClientFactory.newClient();
+
         // Use this.t() to get corresponding language data
         const dinnerArr = this.t('DINNERS');
         const dinnerIndex = Math.floor(Math.random() * dinnerArr.length);
