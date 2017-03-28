@@ -1,8 +1,7 @@
 ## README
 
 ### TODO
-1. Sort out nodejs stuff
-2. Move to another account
+1. Move to another account
 
 ```
 curl -vvv -d '{}' -H "Content-Type: application/json" https://fccxkny9el.execute-api.us-east-1.amazonaws.com/Dev/getdinnerslist
