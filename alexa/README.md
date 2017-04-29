@@ -3,7 +3,8 @@
 * Create deployment package
 
 ```
-zip -r function.zip index.js node_modules/*
+cd alexa/src
+zip -9 -r ../Alexa-Dinnercaster-v0.1.zip *
 ```
 
 * Upload to Lambda
