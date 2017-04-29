@@ -37,6 +37,9 @@ const handlers = {
         // Get a random dinner from the dinner list
         // Use this.t() to get corresponding language data
         const dinnerArr = this.t('DINNERS');
+
+        console.log(dinnerArr);
+
         const dinnerIndex = Math.floor(Math.random() * dinnerArr.length);
         const randomDinner = dinnerArr[dinnerIndex];
 
