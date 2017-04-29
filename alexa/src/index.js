@@ -1,18 +1,10 @@
-/* eslint-disable  func-names */
-/* eslint quote-props: ["error", "consistent"]*/
 /**
  * This sample demonstrates a simple skill built with the Amazon Alexa Skills
  * nodejs skill development kit.
- * This sample supports multiple lauguages. (en-US, en-GB, de-DE).
- * The Intent Schema, Custom Slots and Sample Utterances for this skill, as well
- * as testing instructions are located at https://github.com/alexa/skill-sample-nodejs-fact
  **/
 
 'use strict';
 
-require("dinnercaster");
-
-const apigClientFactory = require('aws-api-gateway-client');
 const Alexa = require('alexa-sdk');
 
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
@@ -42,9 +34,6 @@ const handlers = {
         this.emit('GetDinner');
     },
     'GetDinner': function () {
-        var config = "{invokeUrl:'https://fccxkny9el.execute-api.us-east-1.amazonaws.com/Dev'}";
-        var apigClient = apigClientFactory.newClient(config);
-
         // Get a random dinner from the dinner list
         // Use this.t() to get corresponding language data
         const dinnerArr = this.t('DINNERS');

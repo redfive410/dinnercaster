@@ -59,7 +59,7 @@
           "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
         },
         "Code": {
-          "S3Bucket": "dinnercaster-assets-1",
+          "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "initDynamoDBfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
@@ -73,7 +73,7 @@
           "Fn::GetAtt": ["DinnerCasterDynamoDBScanRole", "Arn"]
         },
         "Code": {
-          "S3Bucket": "dinnercaster-assets-1",
+          "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "getdinnerslistfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
@@ -87,7 +87,7 @@
           "Fn::GetAtt": ["DinnerCasterDynamoDBQueryRole", "Arn"]
         },
         "Code": {
-          "S3Bucket": "dinnercaster-assets-1",
+          "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "getdinnerdetailsfunc.js.zip"
         },
         "Runtime": "nodejs4.3"
