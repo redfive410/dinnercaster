@@ -10,11 +10,6 @@ const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 const languageStrings = {
     'en-US': {
         translation: {
-            DINNERS: [
-                'Ramen',
-                'Trader Joes Indian',
-                'Perogies',
-            ],
             SKILL_NAME: 'DinnerCaster',
             GET_DINNER_MESSAGE: "Here's your dinner idea: ",
             HELP_MESSAGE: 'You can say tell me a dinner idea, or, you can say exit... What can I help you with?")',
@@ -41,15 +36,13 @@ const handlers = {
         this.emit('GetDinner');
     },
     'GetDinner': function () {
-        // Get a random dinner from the dinner list
-        // Use this.t() to get corresponding language data
-        const dinnerArr = this.t('DINNERS');
-        console.log(dinnerArr);
-        const dinnerIndex = Math.floor(Math.random() * dinnerArr.length);
-        const randomDinner = dinnerArr[dinnerIndex];
-
         readDynamoItems(null, response=>{
-          console.log(response);
+          var dinners = JSON.parse(response);
+          console.log(dinners);
+
+          var dinnerIndex = Math.floor(Math.random() * dinners.Items.length);
+          var dinner = dinners.Items[dinnerIndex];
+          var randomDinner = dinner.DinnerName['S'];
           // Create speech output
           const speechOutput = this.t('GET_DINNER_MESSAGE') + randomDinner;
           this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomDinner);
@@ -85,7 +78,6 @@ function readDynamoItems(params, callback) {
     if (err) {
            console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
        } else {
-           console.log("GetItems succeeded:", JSON.stringify(data, null, 2));
            callback(data.Payload);
        }
   });
