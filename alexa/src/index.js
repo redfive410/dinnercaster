@@ -39,6 +39,7 @@ const handlers = {
         readDynamoItems(null, response=>{
           var dinners = JSON.parse(response);
           console.log(dinners);
+          console.log(dinners.Items);
 
           var dinnerIndex = Math.floor(Math.random() * dinners.Items.length);
           var dinner = dinners.Items[dinnerIndex];
