@@ -9,8 +9,7 @@ zip -9 -r ../Alexa-Dinnercaster-v0.1.zip *
 
 * Upload to Lambda
 
-* Algorithm v0
-
+#### Algorithm v0
 1. Find Day of Week
 2. Pull that days scores from list
 3. Add General Score Factor
