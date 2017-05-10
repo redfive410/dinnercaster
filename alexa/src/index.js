@@ -38,12 +38,13 @@ const handlers = {
     'GetDinner': function () {
         readDynamoItems(null, response=>{
           var dinners = JSON.parse(response);
-          console.log(dinners);
-          console.log(dinners.Items);
+          //console.log(dinners);
+          //console.log(dinners.Items.length);
+          //console.log(dinners.Items[0].dinnername['S']);
 
           var dinnerIndex = Math.floor(Math.random() * dinners.Items.length);
           var dinner = dinners.Items[dinnerIndex];
-          var randomDinner = dinner.DinnerName['S'];
+          var randomDinner = dinner.dinnername['S'];
           // Create speech output
           const speechOutput = this.t('GET_DINNER_MESSAGE') + randomDinner;
           this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomDinner);
@@ -72,7 +73,7 @@ function readDynamoItems(params, callback) {
 
   var lambda = new AWS.Lambda();
   lambda.invoke({
-      FunctionName: 'arn:aws:lambda:us-east-1:109613526816:function:dinnercaster-1-getdinnerslistFunction-1HRPVH217WRS2',
+      FunctionName: 'arn:aws:lambda:us-east-1:109613526816:function:dinnercaster-1-getdinnerslistFunction-103OVCC84RWNG',
       InvocationType: 'RequestResponse',
       Payload: '{}'
   }, (err, data) => {

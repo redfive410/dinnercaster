@@ -30,11 +30,11 @@
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "AttributeDefinitions": [{
-          "AttributeName": "DinnerName",
+          "AttributeName": "dinnername",
           "AttributeType": "S"
         }],
         "KeySchema": [{
-          "AttributeName": "DinnerName",
+          "AttributeName": "dinnername",
           "KeyType": "HASH"
         }],
         "ProvisionedThroughput": {
@@ -48,7 +48,7 @@
         "StreamSpecification": {
           "StreamViewType": "NEW_AND_OLD_IMAGES"
         },
-        "TableName": "DinnerCaster"
+        "TableName": "dinnercaster-v1.0"
       }
     },
     "AppendItemToListFunction": {
@@ -62,7 +62,7 @@
           "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "initDynamoDBfunc.js.zip"
         },
-        "Runtime": "nodejs4.3"
+        "Runtime": "nodejs6.10"
       }
     },
     "getdinnerslistFunction": {
@@ -76,7 +76,7 @@
           "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "getdinnerslistfunc.js.zip"
         },
-        "Runtime": "nodejs4.3"
+        "Runtime": "nodejs6.10"
       }
     },
     "getdinnerdetailsFunction": {
@@ -90,7 +90,7 @@
           "S3Bucket": "armitage-dinnercaster-us-east-1",
           "S3Key": "getdinnerdetailsfunc.js.zip"
         },
-        "Runtime": "nodejs4.3"
+        "Runtime": "nodejs6.10"
       }
     },
     "DinnerCasterDynamoDBScanRole": {
