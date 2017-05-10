@@ -1,12 +1,11 @@
 var doc = require('aws-sdk');
 var dynamo = new doc.DynamoDB();
 
-exports.handler = (event, context, callback) => {
-  var getParams = {
+exports.handler = (event, context) => {
+  var params = {
     TableName:'dinnercaster-v1.0'
   };
-
-  dynamo.scan(getParams, function(err, data){
+  dynamo.scan(params, function(err, data){
     if (err)
       console.log(err, err.stack); // an error occurred
     else {
