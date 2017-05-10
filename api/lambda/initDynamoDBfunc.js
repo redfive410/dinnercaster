@@ -12,11 +12,7 @@ exports.handler = (event, context) => {
                 PutRequest: {
                     Item: {
                       "dinnername": "Tacos",
-                      "attributes": "{ \
-                        'GeneralScore': 5, \
-                        'TuesdayScore': 5, \
-                        'ColdWeatherScore': 5, \
-                        'HotWeatherScore': 5}"
+                      "scores": '{ "GeneralScore": 5, "TuesdayScore": 5, "ColdWeatherScore": 5, "HotWeatherScore": 5}'
                     }
                 }
             },
@@ -24,11 +20,7 @@ exports.handler = (event, context) => {
                 PutRequest: {
                     Item: {
                       "dinnername": "Ramen",
-                      "attributes": "{ \
-                        'GeneralScore': 4, \
-                        'TuesdayScore': 2, \
-                        'ColdWeatherScore': 5, \
-                        'HotWeatherScore': 1}"
+                      "scores": '{ "GeneralScore": 4, "TuesdayScore": 2, "ColdWeatherScore": 5, "HotWeatherScore": 1}'
                     }
                 }
             },
@@ -36,11 +28,7 @@ exports.handler = (event, context) => {
                 PutRequest: {
                     Item: {
                       "dinnername": "Pho",
-                      "attributes": "{ \
-                        'GeneralScore': 4, \
-                        'TuesdayScore': 2,\
-                        'ColdWeatherScore': 5,\
-                        'HotWeatherScore': 1}"
+                      "scores": '{ "GeneralScore": 4, "TuesdayScore": 2,"ColdWeatherScore": 5,"HotWeatherScore": 1}'
                     }
                 }
             }

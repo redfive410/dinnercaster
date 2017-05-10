@@ -38,12 +38,18 @@ const handlers = {
     'GetDinner': function () {
         readDynamoItems(null, response=>{
           var dinners = JSON.parse(response);
-          //console.log(dinners);
-          //console.log(dinners.Items.length);
-          //console.log(dinners.Items[0].dinnername['S']);
-          console.log(dinners.Items[0].attributes['S']);
+          var dinnersCount = dinners.Items.length;
 
-          var dinnerIndex = Math.floor(Math.random() * dinners.Items.length);
+          for(var i=0; i < dinnersCount; i++) {
+            console.log(dinners.Items[i].dinnername['S']);
+            console.log(dinners.Items[i].scores['S']);
+
+            var scores = JSON.parse(dinners.Items[i].scores['S']);
+            console.log(scores.GeneralScore);
+            console.log(scores.ColdWeatherScore);
+            console.log(scores.HotWeatherScore);
+          }
+          var dinnerIndex = Math.floor(Math.random() * dinnersCount);
           var dinner = dinners.Items[dinnerIndex];
           var randomDinner = dinner.dinnername['S'];
           // Create speech output
