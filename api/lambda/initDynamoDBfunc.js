@@ -13,6 +13,7 @@ exports.handler = (event, context) => {
                     Item: {
                       "dinnername": "Tacos",
                       "attributes": "{ \
+                        'GeneralScore': 5, \
                         'TuesdayScore': 5, \
                         'ColdWeatherScore': 5, \
                         'HotWeatherScore': 5}"
@@ -24,6 +25,7 @@ exports.handler = (event, context) => {
                     Item: {
                       "dinnername": "Ramen",
                       "attributes": "{ \
+                        'GeneralScore': 4, \
                         'TuesdayScore': 2, \
                         'ColdWeatherScore': 5, \
                         'HotWeatherScore': 1}"
@@ -35,6 +37,7 @@ exports.handler = (event, context) => {
                     Item: {
                       "dinnername": "Pho",
                       "attributes": "{ \
+                        'GeneralScore': 4, \
                         'TuesdayScore': 2,\
                         'ColdWeatherScore': 5,\
                         'HotWeatherScore': 1}"

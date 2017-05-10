@@ -41,6 +41,7 @@ const handlers = {
           //console.log(dinners);
           //console.log(dinners.Items.length);
           //console.log(dinners.Items[0].dinnername['S']);
+          console.log(dinners.Items[0].attributes['S']);
 
           var dinnerIndex = Math.floor(Math.random() * dinners.Items.length);
           var dinner = dinners.Items[dinnerIndex];
