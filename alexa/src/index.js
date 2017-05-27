@@ -61,7 +61,19 @@ const handlers = {
     },
 };
 
-function readDynamoItems(params, callback) {
+function doStuff(callback) {
+  readDynamoItems(response => {
+    var dinners = JSON.parse(response);
+    var dinnersCount = dinners.Items.length;
+
+    var dinnerIndex = Math.floor(Math.random() * dinnersCount);
+    var dinner = dinners.Items[dinnerIndex];
+    var randomDinner = dinner.dinnername['S'];
+    callback(null, randomDinner)
+  });
+}
+
+function readDynamoItems(callback) {
   // Get a random better dinner idea
   var AWS = require('aws-sdk');
   AWS.config.region = 'us-east-1';
@@ -77,17 +89,5 @@ function readDynamoItems(params, callback) {
        } else {
            callback(data.Payload);
        }
-  });
-}
-
-function doStuff(callback) {
-  readDynamoItems(null, response => {
-    var dinners = JSON.parse(response);
-    var dinnersCount = dinners.Items.length;
-
-    var dinnerIndex = Math.floor(Math.random() * dinnersCount);
-    var dinner = dinners.Items[dinnerIndex];
-    var randomDinner = dinner.dinnername['S'];
-    callback(null, randomDinner)
   });
 }
