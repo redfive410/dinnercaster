@@ -3,7 +3,7 @@
  * nodejs skill development kit.
  **/
 'use strict';
-
+const Async = require('async');
 const Alexa = require('alexa-sdk');
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
@@ -36,59 +36,14 @@ const handlers = {
         this.emit('GetDinner');
     },
     'GetDinner': function () {
-        readDynamoItems(null, response => {
-          var dinners = JSON.parse(response);
-          var dinnersCount = dinners.Items.length;
-          var names = [];
-          var dayScores = [];
-          var generalScores = [];
-          var day;
-
-          for(var i=0; i < dinnersCount; i++) {
-            var name = dinners.Items[i].dinnername['S'];
-            names.push(name);
-
-            var scores = JSON.parse(dinners.Items[i].scores['S']);
-            generalScores.push(scores.GeneralScore);
-
-            switch (new Date().getDay()) {
-              case 0:
-                day = "Sunday";
-                break;
-              case 1:
-                day = "Monday";
-                break;
-              case 2:
-                day = "Tuesday";
-                dayScores.push(scores.TuesdayScore);
-                break;
-              case 3:
-                day = "Wednesday";
-                dayScores.push(scores.WednesdayScore);
-                break;
-              case 4:
-                day = "Thursday";
-                break;
-              case 5:
-                day = "Friday";
-                break;
-              case 6:
-                day = "Saturday";
-            }
-          }
-
-          console.log(day);
-          console.log("Names: " + names);
-          console.log("General Scores: " + generalScores);
-          console.log("Day Scores: " + dayScores);
-
-          var dinnerIndex = Math.floor(Math.random() * dinnersCount);
-          var dinner = dinners.Items[dinnerIndex];
-          var randomDinner = dinner.dinnername['S'];
-          // Create speech output
-          const speechOutput = this.t('GET_DINNER_MESSAGE') + randomDinner;
-          this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomDinner);
-        });
+      var _this = this;
+      Async.waterfall([
+        doStuff,
+      ], function (err, randomDinner) {
+        console.log(randomDinner);
+        const speechOutput = _this.t('GET_DINNER_MESSAGE') + randomDinner;
+        _this.emit(':tellWithCard', speechOutput, _this.t('SKILL_NAME'), randomDinner);
+      });
     },
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');
@@ -122,5 +77,17 @@ function readDynamoItems(params, callback) {
        } else {
            callback(data.Payload);
        }
+  });
+}
+
+function doStuff(callback) {
+  readDynamoItems(null, response => {
+    var dinners = JSON.parse(response);
+    var dinnersCount = dinners.Items.length;
+
+    var dinnerIndex = Math.floor(Math.random() * dinnersCount);
+    var dinner = dinners.Items[dinnerIndex];
+    var randomDinner = dinner.dinnername['S'];
+    callback(null, randomDinner)
   });
 }
