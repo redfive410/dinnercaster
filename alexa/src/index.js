@@ -38,7 +38,8 @@ const handlers = {
     'GetDinner': function () {
       var _this = this;
       Async.waterfall([
-        doStuff,
+        getData,
+        getDinnerIdea,
       ], function (err, randomDinner) {
         console.log(randomDinner);
         const speechOutput = _this.t('GET_DINNER_MESSAGE') + randomDinner;
@@ -61,16 +62,20 @@ const handlers = {
     },
 };
 
-function doStuff(callback) {
-  readDynamoItems(response => {
-    var dinners = JSON.parse(response);
-    var dinnersCount = dinners.Items.length;
-
-    var dinnerIndex = Math.floor(Math.random() * dinnersCount);
-    var dinner = dinners.Items[dinnerIndex];
-    var randomDinner = dinner.dinnername['S'];
-    callback(null, randomDinner)
+function getData(callback) {
+  readDynamoItems( response => {
+    callback(null, response);
   });
+}
+
+function getDinnerIdea(arg1, callback) {
+  var dinners = JSON.parse(arg1);
+  var dinnersCount = dinners.Items.length;
+
+  var dinnerIndex = Math.floor(Math.random() * dinnersCount);
+  var dinner = dinners.Items[dinnerIndex];
+  var randomDinner = dinner.dinnername['S'];
+  callback(null, randomDinner)
 }
 
 function readDynamoItems(callback) {
