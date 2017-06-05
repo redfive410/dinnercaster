@@ -4,6 +4,7 @@
  **/
 'use strict';
 const Async = require('async');
+const Http = require('http');
 const Alexa = require('alexa-sdk');
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
@@ -39,6 +40,7 @@ const handlers = {
       var _this = this;
       Async.waterfall([
         getData,
+        getWeatherAndDay,
         getDinnerIdea,
       ], function (err, randomDinner) {
         console.log(randomDinner);
@@ -68,16 +70,6 @@ function getData(callback) {
   });
 }
 
-function getDinnerIdea(arg1, callback) {
-  var dinners = JSON.parse(arg1);
-  var dinnersCount = dinners.Items.length;
-
-  var dinnerIndex = Math.floor(Math.random() * dinnersCount);
-  var dinner = dinners.Items[dinnerIndex];
-  var randomDinner = dinner.dinnername['S'];
-  callback(null, randomDinner)
-}
-
 function readDynamoItems(callback) {
   // Get a random better dinner idea
   var AWS = require('aws-sdk');
@@ -92,7 +84,35 @@ function readDynamoItems(callback) {
     if (err) {
            console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
        } else {
-           callback(data.Payload);
+           callback(JSON.parse(data.Payload));
        }
   });
+}
+
+function getWeatherAndDay(dinners, callback) {
+  var start = new Date();
+  Http.get('http://api.wunderground.com/api/88f0a6fd8156bd5f/conditions/q/CA/Poway.json', function(response) {
+    var body = '';
+    response.on('data', function(d) {
+      body += d;
+    });
+    response.on('end', function() {
+      var parsed = JSON.parse(body);
+      var day = parsed.current_observation.local_time_rfc822.substring(0, 3);
+      var temp = parsed.current_observation.temp_f;
+      callback(null, dinners, day, temp)
+    });
+  });
+}
+
+function getDinnerIdea(dinners, day, temp_f, callback) {
+  console.log(day);
+  console.log(temp_f);
+
+  var dinnersCount = dinners.Items.length;
+
+  var dinnerIndex = Math.floor(Math.random() * dinnersCount);
+  var dinner = dinners.Items[dinnerIndex];
+  var randomDinner = dinner.dinnername['S'];
+  callback(null, randomDinner)
 }
