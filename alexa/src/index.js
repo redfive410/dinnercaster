@@ -106,13 +106,62 @@ function getWeatherAndDay(dinners, callback) {
 }
 
 function getDinnerIdea(dinners, day, temp_f, callback) {
-  console.log(day);
-  console.log(temp_f);
+  var randomDinner = getResultV0(dinners);
+  //var randomDinner = getResultV1(dinners, day, temp_f);
+  callback(null, randomDinner)
+}
 
+function getResultV0(dinners) {
   var dinnersCount = dinners.Items.length;
 
   var dinnerIndex = Math.floor(Math.random() * dinnersCount);
   var dinner = dinners.Items[dinnerIndex];
-  var randomDinner = dinner.dinnername['S'];
-  callback(null, randomDinner)
+  return dinner.dinnername['S'];
+}
+
+function getResultV1(dinners, day, temp_f) {
+  var names = [];
+  var generalScores = [];
+  var dayScores = [];
+
+  for(var i=0; i < dinners.Items.length; i++) {
+    var name = dinners.Items[i].dinnername['S'];
+    names.push(name);
+
+    var scores = JSON.parse(dinners.Items[i].scores['S']);
+    generalScores.push(scores.GeneralScore);
+
+    switch (day) {
+      case "Sun":
+        dayScores.push(scores.SundayScore);
+        break;
+      case "Mon":
+        dayScores.push(scores.MondayScore);
+        break;
+      case "Tue":
+        dayScores.push(scores.TuesdayScore);
+        break;
+      case "Wed":
+        dayScores.push(scores.WednesdayScore);
+        break;
+      case "Thu":
+        dayScores.push(scores.ThursdayScore);
+        break;
+      case "Fri":
+        dayScores.push(scores.FridayScore);
+        break;
+      case "Sat":
+        dayScores.push(scores.SaturdayScore);
+    }
+  }
+
+  var finalScores = {};
+  for(var i=0; i < dinners.Items.length; i++) {
+    console.log(names[i]);
+    console.log(generalScores[i]);
+    console.log(dayScores[i]);
+    var score = generalScores[i] * dayScores[i];
+    finalScores[names[i]] = score;
+  }
+  console.log(finalScores);
 }
