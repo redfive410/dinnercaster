@@ -106,8 +106,8 @@ function getWeatherAndDay(dinners, callback) {
 }
 
 function getDinnerIdea(dinners, day, temp_f, callback) {
-  var randomDinner = getResultV0(dinners);
-  //var randomDinner = getResultV1(dinners, day, temp_f);
+  //var randomDinner = getResultV0(dinners);
+  var randomDinner = getResultV1(dinners, day, temp_f);
   callback(null, randomDinner)
 }
 
@@ -120,11 +120,13 @@ function getResultV0(dinners) {
 }
 
 function getResultV1(dinners, day, temp_f) {
+  var dinnersCount = dinners.Items.length;
+
   var names = [];
   var generalScores = [];
   var dayScores = [];
 
-  for(var i=0; i < dinners.Items.length; i++) {
+  for(var i=0; i < dinnersCount; i++) {
     var name = dinners.Items[i].dinnername['S'];
     names.push(name);
 
@@ -155,13 +157,17 @@ function getResultV1(dinners, day, temp_f) {
     }
   }
 
-  var finalScores = {};
-  for(var i=0; i < dinners.Items.length; i++) {
-    console.log(names[i]);
-    console.log(generalScores[i]);
-    console.log(dayScores[i]);
+  var finalScores = [];
+  for(var i=0; i < dinnersCount; i++) {
     var score = generalScores[i] * dayScores[i];
-    finalScores[names[i]] = score;
+    var score_object = {};
+    score_object[names[i]] = score;
+    finalScores.push(score_object);
   }
-  console.log(finalScores);
+
+  var dinnerIndex = Math.floor(Math.random() * dinnersCount);
+  var finalScore = finalScores[dinnerIndex];
+  console.log(Object.keys(finalScore) + ":" + finalScore[Object.keys(finalScore)]);
+
+  return Object.keys(finalScore);
 }
